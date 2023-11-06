@@ -40,9 +40,12 @@ class Importer:
 
         else:
             diskParts = psutil.disk_partitions()
+            self.totalDisk = 0
+            self.usedDisk = 0
+            self.freeDisk = 0
             # "/" path in windows only has C drive under it, other hard drives will be under their own directory. Gotta add 'em all!
-            for drive in diskParts:
-                disk = psutil.disk_usage(diskParts[drive].mountpoint)
+            for i in range(len(diskParts)):
+                disk = psutil.disk_usage(diskParts[i].mountpoint)
                 self.totalDisk += disk.total
                 self.usedDisk += disk.used
                 self.freeDisk += disk.free

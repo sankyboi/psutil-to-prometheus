@@ -53,10 +53,10 @@ class PrometheusExporter:
         self.g_freeDisk.set(self.importer.freeDisk)
         self.g_percentDiskUsed.set(self.importer.diskPercentUsed)
 
-        self.g_totalSwap.set(self.importer.total)
-        self.g_usedSwap.set(self.importer.used)
-        self.g_availableSwap.set(self.importer.free)
-        self.g_percentSwapUsed.set(self.importer.percent)
+        self.g_totalSwap.set(self.importer.totalSwap)
+        self.g_usedSwap.set(self.importer.usedSwap)
+        self.g_availableSwap.set(self.importer.freeSwap)
+        self.g_percentSwapUsed.set(self.importer.percentSwapUsed)
 
         self.g_bytesSent.set(self.importer.bytesSent)
         self.g_bytesRecv.set(self.importer.bytesRecv)
