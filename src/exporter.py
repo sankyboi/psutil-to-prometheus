@@ -7,7 +7,6 @@ class PrometheusExporter:
 
         self.g_cpuCount = Gauge('cpuCount', 'Physical CPU cores in the machine')
         self.g_cpuCountLogical = Gauge('cpuCountLogical', 'logical CPU cores in the machine')
-        self.g_cpuCountUsable = Gauge('cpuCountUsable', 'Usable CPU cores in the machine')
         self.g_cpuPercent = Gauge('cpuPercent', 'percentage CPU usage')
 
         self.g_totalMemory = Gauge('totalMemory', 'Total memory')
@@ -33,6 +32,14 @@ class PrometheusExporter:
         self.g_errorOut = Gauge('errorOut', 'total error in outgoing packets')
         self.g_dropIn = Gauge('dropIn', 'total incoming packets dropped')
         self.g_dropOut = Gauge('dropOut', 'total outgoing packets dropped')
+        self.g_dlSpeed = Gauge('dlSpeed','bytes received since last measurements')
+        self.g_ulSpeed = Gauge('ulSpeed','bytes sent since last measurements')
+        self.g_packetsSentRate = Gauge('packetsSentRate','bytes sent since last measurements')
+        self.g_packetsRecvRate = Gauge('packetsRecvRate','bytes sent since last measurements')
+        self.g_errorInRate = Gauge('errorInRate','bytes sent since last measurements')
+        self.g_errorOutRate = Gauge('errorOutRate','bytes sent since last measurements')
+        self.g_dropInRate = Gauge('dropInRate','bytes sent since last measurements')
+        self.g_dropOutRate = Gauge('dropOutRate','bytes sent since last measurements')
 
         self.update_gauges()
 
@@ -41,7 +48,6 @@ class PrometheusExporter:
          
         self.g_cpuCount.set(self.importer.cpuCount)
         self.g_cpuCountLogical.set(self.importer.cpuCountLogical)
-        self.g_cpuCountUsable.set(self.importer.cpuCountUsable)
         self.g_cpuPercent.set(self.importer.cpuPercent)
         self.g_totalMemory.set(self.importer.totalMemory)
         self.g_usedMemory.set(self.importer.usedMemory)
@@ -66,3 +72,11 @@ class PrometheusExporter:
         self.g_errorOut.set(self.importer.errorOut)
         self.g_dropIn.set(self.importer.dropIn)
         self.g_dropOut.set(self.importer.dropOut)
+        self.g_dlSpeed.set(self.importer.dlSpeed)
+        self.g_ulSpeed.set(self.importer.ulSpeed)
+        self.g_packetsSentRate.set(self.importer.packetsSentRate)
+        self.g_packetsRecvRate.set(self.importer.packetsRecvRate)
+        self.g_errorInRate.set(self.importer.errorInRate)
+        self.g_errorOutRate.set(self.importer.errorOutRate)
+        self.g_dropInRate.set(self.importer.dropInRate)
+        self.g_dropOutRate.set(self.importer.dropOutRate)

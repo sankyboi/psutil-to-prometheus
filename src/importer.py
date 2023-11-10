@@ -2,8 +2,10 @@ import psutil
 
 class Importer:
     def __init__(self):
-  
+        self.prevNetwork = psutil.net_io_counters(pernic=False, nowrap=True)
+        self.measureStatic()
         self.measure()
+        self.measureLowFreq()
 
     
     def measure(self):
@@ -11,14 +13,17 @@ class Importer:
         self.measureCPU()
         self.measureMemory()
         self.measureSwap()
-        self.measureDisk() 
         self.measureNetwork()
+
+    def measureLowFreq(self):
+
+        self.measureDisk() 
+        
 
 
     def measureNetwork(self):
 
         network = psutil.net_io_counters(pernic=False, nowrap=True)
-
         self.bytesSent = network.bytes_sent
         self.bytesRecv = network.bytes_recv
         self.packetsSent = network.packets_sent
@@ -27,6 +32,15 @@ class Importer:
         self.errorOut = network.errout
         self.dropIn = network.dropin
         self.dropOut = network.dropout
+        self.dlSpeed = network.bytes_recv - self.prevNetwork.bytes_recv
+        self.ulSpeed = network.bytes_sent - self.prevNetwork.bytes_sent
+        self.packetsSentRate = network.packets_sent - self.prevNetwork.packets_sent
+        self.packetsRecvRate = network.packets_recv - self.prevNetwork.packets_recv
+        self.errorInRate = network.errin - self.prevNetwork.errin
+        self.errorOutRate = network.errout - self.prevNetwork.errout
+        self.dropInRate = network.dropin - self.prevNetwork.dropout
+        self.dropOutRate = network.dropout - self.prevNetwork.dropout
+        self.prevNetwork = network      
 
     def measureDisk(self):
 
@@ -63,7 +77,7 @@ class Importer:
     def measureMemory(self):
 
         mem = psutil.virtual_memory()
-        self.totalMemory = mem.total
+        
         self.usedMemory = mem.used
         self.availableMemory = mem.available
         self.memPercentUsed = mem.percent
@@ -71,6 +85,11 @@ class Importer:
     def measureCPU(self):
  
         self.cpuPercent = psutil.cpu_percent()
-        self.cpuCountUsable = len(psutil.Process().cpu_affinity())
-        self.cpuCountLogical = psutil.cpu_count()
-        self.cpuCount = psutil.cpu_count(logical=False)
+
+
+    def measureStatic(self):
+
+        self.cpuCountLogical = psutil.cpu_count() #the number of physical cores multiplied by the number of threads that can run on each core 
+        self.cpuCount = psutil.cpu_count(logical=False) #physical corees
+        mem = psutil.virtual_memory()
+        self.totalMemory = mem.total
