@@ -1,4 +1,4 @@
-### psutil to Prometheus
+# psutil to Prometheus
 
 ![Sample dashboard screenshot](./Sample%20Grafana%20Dashboard/image.png)
 
@@ -8,7 +8,7 @@ psutil-to-prometheus gathers some (as of now) psutil stats, calculates some rate
 
 ## How to run 
 
-For the first time, run
+Clone the repo, then run
 
 ```
 pip install -r requirements.txt
@@ -19,9 +19,10 @@ subsequently, you can simply start the program using
 ```
 python main.py 
 ```
+
 or if you're on a Windows machine, double click on `start_script.bat`
 
-## Arguments 
+### Arguments 
 
 You can define the frequency of measurements and the port used using arguments. To know more, run 
 
@@ -55,7 +56,7 @@ Finally, start the docker compose
 docker compose up -d psutil-to-prometheus
 ```
 
-# Warning 
+### Warning 
 psutil on Docker for windows will only return resources available to the docker container. Therefore for accurate readings, I recommend running without Docker on windows, using the .bat script.  Docker works fine on Linux. 
 
 ## Sample Dashboard 
