@@ -1,0 +1,1273 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 5,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+        },
+        "description": "Stacked graph of Packets received, Packets sent, errors, and drops",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "blue",
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "% of total traffic",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 100,
+              "gradientMode": "hue",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "smooth",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "percent"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "pps"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 10,
+          "x": 0,
+          "y": 0
+        },
+        "id": 10,
+        "options": {
+          "legend": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "dropInRate{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A",
+            "useBackend": false
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "packetsRecvRate{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "hide": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "E",
+            "useBackend": false
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "dropOutRate{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "hide": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "B",
+            "useBackend": false
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "errorInRate{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "hide": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "C",
+            "useBackend": false
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "packetsSentRate{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "hide": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "F",
+            "useBackend": false
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "errorOutRate{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "hide": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "D",
+            "useBackend": false
+          }
+        ],
+        "title": "Network Usage & QoS",
+        "transformations": [
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"dropInRate\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "Drops in incoming network requests"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"dropOutRate\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "Drops in outgoing network requests"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"errorInRate\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "Errors in incoming network requests"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"errorOutRate\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "Errors in outgoing network requests"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"packetsSentRate\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "Network packets sent"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"packetsRecvRate\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "Network packets received"
+            }
+          }
+        ],
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-red",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 4,
+          "x": 10,
+          "y": 0
+        },
+        "id": 4,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "10.2.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "cpuCount{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A",
+            "useBackend": false
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "cpuCountLogical{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "hide": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "B",
+            "useBackend": false
+          }
+        ],
+        "title": "CPU info",
+        "transformations": [
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"cpuCount\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "Physical cores"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"cpuCountLogical\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "Logical cores"
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+        },
+        "description": "Available RAM and used RAM",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "Memory Usage",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 94,
+              "gradientMode": "hue",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": 3600000,
+              "lineInterpolation": "smooth",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 2,
+              "pointSize": 1,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "percent"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "fieldMinMax": false,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Used Memory"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "dark-red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Available Memory"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "yellow",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 10,
+          "x": 14,
+          "y": 0
+        },
+        "id": 6,
+        "options": {
+          "legend": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "usedMemory{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "hide": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "B",
+            "useBackend": false
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "availableMemory{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A",
+            "useBackend": false
+          }
+        ],
+        "title": "Memory Usage",
+        "transformations": [
+          {
+            "filter": {
+              "id": "byRefId",
+              "options": "A"
+            },
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"availableMemory\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "Available Memory"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"usedMemory\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "Used Memory"
+            }
+          }
+        ],
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+        },
+        "description": "percent of all mounted storages used",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-red",
+                  "value": null
+                },
+                {
+                  "color": "light-yellow",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 4,
+          "x": 10,
+          "y": 3
+        },
+        "id": 12,
+        "options": {
+          "minVizHeight": 75,
+          "minVizWidth": 75,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "text": {}
+        },
+        "pluginVersion": "10.2.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "percentDiskUsed{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A",
+            "useBackend": false
+          }
+        ],
+        "title": "Percent storage used",
+        "transformations": [
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"percentDiskUsed\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "$1"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"percentDiskUsed\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "$1"
+            }
+          }
+        ],
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "smooth",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "Bps"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Download speed"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "dark-red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Upload speed"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "light-yellow",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 10,
+          "x": 0,
+          "y": 8
+        },
+        "id": 8,
+        "options": {
+          "legend": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "dlSpeed{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A",
+            "useBackend": false
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "ulSpeed{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "hide": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "B",
+            "useBackend": false
+          }
+        ],
+        "title": "Network Speeds",
+        "transformations": [
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"dlSpeed\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "Download speed"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"ulSpeed\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "Upload speed"
+            }
+          }
+        ],
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+        },
+        "description": "Available storage space across all mounted storages",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-red",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 4,
+          "x": 10,
+          "y": 8
+        },
+        "id": 2,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "10.2.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "totalDisk{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A",
+            "useBackend": false
+          }
+        ],
+        "title": "Available Storage space",
+        "transformations": [
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"totalDisk\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "$1"
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 73,
+              "gradientMode": "hue",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "percent"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "bytes"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Used Swap"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "dark-red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Available Swap"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "light-yellow",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 10,
+          "x": 14,
+          "y": 8
+        },
+        "id": 14,
+        "options": {
+          "legend": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "usedSwap{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A",
+            "useBackend": false
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "availableSwap{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "hide": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "B",
+            "useBackend": false
+          }
+        ],
+        "title": "Swap Usage",
+        "transformations": [
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"usedSwap\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "Used Swap"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"availableSwap\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "Available Swap"
+            }
+          }
+        ],
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+        },
+        "description": "Total RAM and Storage on the device",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 2,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-red",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "bytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 4,
+          "x": 10,
+          "y": 11
+        },
+        "id": 16,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "10.2.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "totalMemory{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A",
+            "useBackend": false
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "totalSwap{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "hide": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "C",
+            "useBackend": false
+          }
+        ],
+        "transformations": [
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"totalMemory\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "Total RAM"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"totalSwap\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "Total swap"
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+        },
+        "description": "Data used since last reboot",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "dark-red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 4,
+          "x": 10,
+          "y": 13
+        },
+        "id": 18,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "10.2.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "bytesRecv{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A",
+            "useBackend": false
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "bytesSent{instance=\"$instanceName\"}",
+            "fullMetaSearch": false,
+            "hide": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "B",
+            "useBackend": false
+          }
+        ],
+        "transformations": [
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"bytesRecv\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "Data downloaded"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "{__name__=\"bytesSent\", instance=\"(.*)\", job=\"services\"}",
+              "renamePattern": "Data uploaded"
+            }
+          }
+        ],
+        "type": "stat"
+      }
+    ],
+    "refresh": "",
+    "schemaVersion": 38,
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": true,
+            "text": "Linux-Server",
+            "value": "Linux-Server"
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c74d99d7-5efb-45a7-a0da-0e6db744d51f"
+          },
+          "definition": "label_values(instance)",
+          "description": "Variable to change the device to monitor",
+          "hide": 0,
+          "includeAll": false,
+          "label": "instance name",
+          "multi": false,
+          "name": "instanceName",
+          "options": [],
+          "query": {
+            "qryType": 1,
+            "query": "label_values(instance)",
+            "refId": "PrometheusVariableQueryEditor-VariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-5m",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Per device Dashboard",
+    "uid": "f32f4765-c460-406d-9e34-dae700f30817",
+    "version": 1,
+    "weekStart": ""
+  }
